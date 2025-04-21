@@ -47,4 +47,7 @@ sleep 1
 echo "Audio sink set to: $HDMI_AUDIO_SINK"
 pactl set-default-sink "$HDMI_AUDIO_SINK"
 
+echo "Attempting to exit Steam Big Picture Mode (if active)..."
+steam steam://close/bigpicture &
+
 echo "All Displays profile activated."

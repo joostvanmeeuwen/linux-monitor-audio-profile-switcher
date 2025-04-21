@@ -35,4 +35,7 @@ sleep 1
 echo "Audio sink set to: $HDMI_AUDIO_SINK"
 pactl set-default-sink "$HDMI_AUDIO_SINK"
 
+echo "Launching Steam in Big Picture Mode..."
+steam steam://open/bigpicture &
+
 echo "TV profile activated."
