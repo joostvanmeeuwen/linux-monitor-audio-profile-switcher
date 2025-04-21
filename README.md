@@ -16,4 +16,4 @@ Bash scripts to switch display (monitor/TV) and audio output profiles in KDE Pla
 2.  Edit `profile_config.sh` with the correct values for your hardware and desired settings.
 3.  Make scripts executable: `chmod +x *.sh`
 4.  Test each profile script manually (e.g., `./profile_desk.sh`).
-5.  Assign keyboard shortcuts via KDE System Settings > Shortcuts > Custom Shortcuts.
+5.  Assign keyboard shortcuts via KDE System Settings > Keyboard > Shortcuts > Custom Shortcuts.
