@@ -1,6 +1,7 @@
 #!/bin/bash
 
-CONFIG_FILE=./profile_config.sh
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+CONFIG_FILE="$SCRIPT_DIR/profile_config.sh"
 
 if [[ -f "$CONFIG_FILE" ]]; then
   source "$CONFIG_FILE"
