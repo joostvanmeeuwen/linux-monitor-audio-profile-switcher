@@ -31,7 +31,7 @@ ALL_M2_PRIMARY="false"
 
 ALL_TV_MODE="$TV_MODE"
 ALL_TV_POS="5120,0"
-ALL_TV_SCALE="1"
+ALL_TV_SCALE="1.5"
 ALL_TV_PRIMARY="false"
 
 USB_AUDIO_SINK="alsa_output.usb-Audient_iD4-00.HiFi__Headphones__sink"
