@@ -1,19 +1,63 @@
-# kde-monitor-audio-profile-switcher
+# Linux Monitor & Audio Profile Switcher
 
-Bash scripts to switch display (monitor/TV) and audio output profiles in KDE Plasma (Wayland, tested on 6.3). Uses `kscreen-doctor` and `pactl`.
+Bash scripts to switch between display and audio profiles.
 
-## Scripts Included
+Works on KDE Plasma (Wayland) using `kscreen-doctor` and GNOME (Wayland, 47+) using the `gdctl` tool. The script automatically detects the desktop environment.
 
-* `check_devices.sh`: Helper script to find device IDs/names needed for `profile_config.sh`.
-* `profile_config.sh`: Configuration file
-* `profile_desk.sh`: Activates desk monitors + USB audio.
-* `profile_tv.sh`: Activates TV + HDMI audio (with specific scaling).
-* `profile_all.sh`: Activates all displays + HDMI audio.
+It manages monitor layouts, primary display status, UI scaling, and default audio sinks.
 
-## Basic Setup
+## Requirements
 
-1.  Run `./check_devices.sh` to find display IDs and audio sink names.
-2.  Edit `profile_config.sh` with the correct values for your hardware and desired settings.
-3.  Make scripts executable: `chmod +x *.sh`
-4.  Test each profile script manually (e.g., `./profile_desk.sh`).
-5.  Assign keyboard shortcuts via KDE System Settings > Keyboard > Shortcuts > Custom Shortcuts.
+* **GNOME (47+):** `gdctl`
+* **KDE Plasma:** `kscreen-doctor`
+* **Audio:** `pactl`
+
+## Scripts
+
+* `check_devices.sh`: A script that detects the desktop environment to find the correct device IDs, modes, and audio sink names.
+* `profile_config.sh`: Configuration file, to define tge hardware and the settings for each profile.
+* `switch_profile.sh`: Script that applies the profiles. It takes an argument (`desk`, `tv`, or `all`) to determine which profile to activate.
+
+## How to Use
+
+#### 1. Make the scripts executable
+```bash
+chmod +x *.sh
+````
+
+#### 2. Find hardware IDs
+
+Run the `check_devices.sh` script. It will show the monitor connectors, available modes, and audio sink names needed for the configuration.
+
+```bash
+./check_devices.sh
+```
+
+#### 3. Edit `profile_config.sh`
+
+Open the file and fill in the values you found in the previous step.
+
+  * Set the `MONITOR1_ID`, `MONITOR2_ID`, `TV_ID`, `USB_AUDIO_SINK`, and `HDMI_AUDIO_SINK`.
+  * For each profile (`DESK`, `TV`, `ALL`), configure the settings for each monitor (`_ENABLED`, `_MODE`, `_SCALE`, `_PRIMARY`).
+  * **Important:** Pay attention to the position format, which requires separate `_POS_X` and `_POS_Y` variables (e.g., `DESK_M1_POS_X="2560"` and `DESK_M1_POS_Y="0"`).
+
+#### 4. Test the profiles
+
+Run the main script from a terminal with one of the profile names as an argument:
+
+```bash
+./switch_profile.sh desk
+./switch_profile.sh tv
+./switch_profile.sh all
+```
+
+#### 5. Assign keyboard shortcuts
+
+Go to your Desktop Environment's settings (KDE System Settings or GNOME Settings) and navigate to `Keyboard > Shortcuts > Custom Shortcuts`. Create a new shortcut for each profile.
+
+  * **Example entry:**
+      * **Name:** `Profile: Desk`
+      * **Command:** `/full/path/to/your/scripts/switch_profile.sh desk`
+      * **Shortcut:** `Super+F1` (or your preference)
+
+Repeat this process for the `tv` and `all` profiles, using the appropriate argument in the command.
