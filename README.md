@@ -2,20 +2,19 @@
 
 Bash scripts to switch between display and audio profiles.
 
-Works on KDE Plasma (Wayland) using `kscreen-doctor` and GNOME (Wayland, 47+) using the `gdctl` tool. The script automatically detects the desktop environment.
+Works on GNOME (Wayland, 47+) using the `gdctl` tool.
 
 It manages monitor layouts, primary display status, UI scaling, and default audio sinks.
 
 ## Requirements
 
 * **GNOME (47+):** `gdctl`
-* **KDE Plasma:** `kscreen-doctor`
 * **Audio:** `pactl`
 
 ## Scripts
 
-* `check_devices.sh`: A script that detects the desktop environment to find the correct device IDs, modes, and audio sink names.
-* `profile_config.sh`: Configuration file, to define tge hardware and the settings for each profile.
+* `check_devices.sh`: A script to find the correct device IDs, modes, and audio sink names.
+* `profile_config.sh`: Configuration file to define the hardware and the settings for each profile.
 * `switch_profile.sh`: Script that applies the profiles. It takes an argument (`desk`, `tv`, or `all`) to determine which profile to activate.
 
 ## How to Use
@@ -53,7 +52,7 @@ Run the main script from a terminal with one of the profile names as an argument
 
 #### 5. Assign keyboard shortcuts
 
-Go to your Desktop Environment's settings (KDE System Settings or GNOME Settings) and navigate to `Keyboard > Shortcuts > Custom Shortcuts`. Create a new shortcut for each profile.
+Go to GNOME Settings and navigate to `Keyboard > Shortcuts > Custom Shortcuts`. Create a new shortcut for each profile.
 
   * **Example entry:**
       * **Name:** `Profile: Desk`

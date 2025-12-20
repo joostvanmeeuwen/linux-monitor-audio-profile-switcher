@@ -6,7 +6,7 @@ TV_ID="HDMI-1"
 
 
 USB_AUDIO_SINK="alsa_output.usb-Audient_iD4-00.HiFi__Headphones__sink"
-HDMI_AUDIO_SINK="alsa_output.pci-0000_0a_00.1.hdmi-surround"
+HDMI_AUDIO_SINK="alsa_output.pci-0000_0a_00.1.hdmi-stereo"
 
 DESK_M1_ENABLED="true"
 DESK_M1_MODE="2560x1440@59.951"
@@ -28,7 +28,7 @@ TV_M1_ENABLED="false"
 TV_M2_ENABLED="false"
 
 TV_TV_ENABLED="true"
-TV_TV_MODE="1920x1080@50.000"
+TV_TV_MODE="1920x1080@60.000"
 TV_TV_POS_X="0"
 TV_TV_POS_Y="0"
 TV_TV_SCALE="1.5"
