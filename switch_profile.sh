@@ -52,44 +52,11 @@ apply_gnome_settings() {
   gdctl set "${args[@]}"
 }
 
-run_steam_command() {
-  local steam_action="$1"
-
-  if [[ "$steam_action" == "open" ]]; then
-    local steam_url="steam://open/bigpicture"
-    if flatpak list | grep -q 'com.valvesoftware.Steam'; then
-      echo "Starting Steam in Big Picture Mode (Flatpak)..."
-      flatpak run com.valvesoftware.Steam "$steam_url" &> /dev/null &
-    elif command -v steam &> /dev/null; then
-      echo "Starting Steam in Big Picture Mode..."
-      steam "$steam_url" &> /dev/null &
-    fi
-  elif [[ "$steam_action" == "shutdown" ]]; then
-    if flatpak list | grep -q 'com.valvesoftware.Steam'; then
-      echo "Shutting down Steam (Flatpak)..."
-      flatpak run com.valvesoftware.Steam -shutdown &> /dev/null
-    elif command -v steam &> /dev/null; then
-      echo "Shutting down Steam..."
-      steam -shutdown &> /dev/null
-    fi
-  fi
-}
-
 AUDIO_SINK=""
-STEAM_ACTION=""
 case "$PROFILE" in
-  desk)
-    AUDIO_SINK="$USB_AUDIO_SINK"
-    STEAM_ACTION="shutdown"
-    ;;
-  tv)
-    AUDIO_SINK="$HDMI_AUDIO_SINK"
-    STEAM_ACTION="open"
-    ;;
-  all)
-    AUDIO_SINK="$USB_AUDIO_SINK"
-    STEAM_ACTION="shutdown"
-    ;;
+  desk) AUDIO_SINK="$USB_AUDIO_SINK" ;;
+  tv)   AUDIO_SINK="$HDMI_AUDIO_SINK" ;;
+  all)  AUDIO_SINK="$USB_AUDIO_SINK" ;;
 esac
 
 echo "Activating profile '$PROFILE'..."
@@ -99,10 +66,6 @@ sleep 1
 if [[ -n "$AUDIO_SINK" ]]; then
   echo "Setting audio sink to: $AUDIO_SINK"
   pactl set-default-sink "$AUDIO_SINK"
-fi
-
-if [[ -n "$STEAM_ACTION" ]]; then
-  run_steam_command "$STEAM_ACTION"
 fi
 
 echo "Profile '$PROFILE' successfully activated."
