@@ -26,7 +26,6 @@ case "$PROFILE" in
       --logical-monitor \
         --monitor "$MONITOR2_ID" --mode "$DESK_M2_MODE" \
         --x "$DESK_M2_POS_X" --y "$DESK_M2_POS_Y" --scale "$DESK_M2_SCALE"
-    gdctl store
     sleep 1
     pactl set-default-sink "$USB_AUDIO_SINK"
     ;;
@@ -35,7 +34,6 @@ case "$PROFILE" in
       --logical-monitor --primary \
         --monitor "$TV_ID" --mode "$TV_TV_MODE" \
         --x "$TV_TV_POS_X" --y "$TV_TV_POS_Y" --scale "$TV_TV_SCALE"
-    gdctl store
     sleep 1
     pactl set-default-sink "$HDMI_AUDIO_SINK"
     ;;
@@ -50,7 +48,6 @@ case "$PROFILE" in
       --logical-monitor \
         --monitor "$TV_ID" --mode "$ALL_TV_MODE" \
         --x "$ALL_TV_POS_X" --y "$ALL_TV_POS_Y" --scale "$ALL_TV_SCALE"
-    gdctl store
     sleep 1
     pactl set-default-sink "$USB_AUDIO_SINK"
     ;;
